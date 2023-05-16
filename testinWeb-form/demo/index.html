@@ -14,6 +14,7 @@
     <script type="module">
       import { html, render } from 'lit';
       import '../dist/src/testinWeb-form.js';
+      import '../dist/src/my-menu.js';
 
       render(
         html`
@@ -25,6 +26,7 @@
             placeholder="que pasa perro"
           >
           </testinWeb-form>
+          <my-menu></my-menu>
         `,
         document.querySelector('#demo')
       );
