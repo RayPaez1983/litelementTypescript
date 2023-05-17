@@ -1,25 +1,27 @@
 /* eslint-disable lit-a11y/click-events-have-key-events */
 import { LitElement, html } from 'lit';
-import { property } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 
+@customElement('my-menu')
 export class MyMenu extends LitElement {
   @property() clicked = '';
 
   protected render() {
     return html`
-      <div @click="${this._clickHandler}">
-        <button>Item 1</button>
-        <button>Item 2</button>
-        <button>Item 3</button>
+      <div>
+        <button @click="${this._showTitle}">Show Title</button>
+        <button @click="${this._showDescription}">Show Description</button>
       </div>
-      <p>Clicked: ${this.clicked}</p>
     `;
   }
 
-  private _clickHandler(e: Event) {
-    this.clicked =
-      e.target === e.currentTarget
-        ? 'container'
-        : (e.target as HTMLDivElement).textContent!;
+  private _showTitle(e: PointerEvent) {
+    this.dispatchEvent(new Event('show-title'));
+    (e.target as HTMLInputElement).setPointerCapture(e.pointerId);
+  }
+
+  private _showDescription(e: PointerEvent) {
+    this.dispatchEvent(new Event('show-description'));
+    (e.target as HTMLInputElement).setPointerCapture(e.pointerId);
   }
 }

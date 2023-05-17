@@ -1,2 +1,1 @@
-export { TestinWebForm } from './TestinWebForm.js';
-export { MyMenu } from './MyMenu.js';
+export { App } from './App.js';

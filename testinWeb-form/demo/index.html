@@ -13,20 +13,17 @@
 
     <script type="module">
       import { html, render } from 'lit';
-      import '../dist/src/testinWeb-form.js';
-      import '../dist/src/my-menu.js';
+      import '../dist/src/my-app.js';
 
       render(
         html`
-          <testinWeb-form
-            with-label
+          <my-app
             with-description
-            description="quiero ser campeon del mundo"
-            label="Este es un label"
-            placeholder="que pasa perro"
+            description="I wanna be a champion"
+            label="Do it with passion"
+            placeholder="This is the custom place holder"
           >
-          </testinWeb-form>
-          <my-menu></my-menu>
+          </my-app>
         `,
         document.querySelector('#demo')
       );
