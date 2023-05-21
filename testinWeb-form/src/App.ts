@@ -2,6 +2,7 @@ import { LitElement, html, css } from 'lit';
 import { property } from 'lit/decorators.js';
 import './TestinWebForm.js';
 import './MyMenu.js';
+import './DragAndDrop.js';
 
 export class App extends LitElement {
   @property({ type: String })
@@ -50,6 +51,7 @@ export class App extends LitElement {
           this.withDescription = !this.withDescription;
         }}
       ></my-menu>
+      <drag-and-drop></drag-and-drop>
     `;
   }
 }
