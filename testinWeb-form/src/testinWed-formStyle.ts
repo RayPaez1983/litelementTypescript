@@ -83,4 +83,33 @@ export default css`
   #description.info {
     color: var(--main-color-blue);
   }
+  .drag-element {
+    cursor: move;
+    background: red;
+    width: 100px;
+    heigth: 100px;
+  }
+
+  .drop-zone {
+    min-height: 100px;
+    border: 2px dashed #000;
+    padding: 10px;
+    background: black;
+    position: relative;
+    top: 150px;
+    z-index: 1;
+  }
+
+  .dragging {
+    opacity: 0.5;
+  }
+  .drag-content-box {
+    min-height: 600px;
+    border: 2px dashed #000;
+    padding: 10px;
+    position: relative;
+    bottom: 100px;
+    z-index: 0;
+    background: yellow;
+  }
 `;
