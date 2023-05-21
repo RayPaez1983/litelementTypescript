@@ -1,8 +1,9 @@
 /* eslint-disable import/extensions */
 import { html, LitElement } from 'lit';
-import { property, query } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import style from './testinWed-formStyle';
 
+@customElement('testinweb-form')
 export class TestinWebForm extends LitElement {
   static styles = [style];
 
@@ -20,10 +21,10 @@ export class TestinWebForm extends LitElement {
 
   @property({ type: String }) placeholder = 'Default placeholder';
 
-  @property({ type: Boolean, attribute: 'with-description' })
+  @property({ type: Boolean })
   withDescription = false;
 
-  @property({ type: Boolean, attribute: 'with-label' })
+  @property({ type: Boolean })
   withLabel = false;
 
   @query('#input')
@@ -31,17 +32,6 @@ export class TestinWebForm extends LitElement {
 
   @query('#div')
   divElement!: HTMLDivElement;
-
-  eventEmitter() {
-    console.log('entra o no entra');
-    this.addEventListener('input', () => {
-      this.value = this.inputElement.value;
-    });
-  }
-
-  updated() {
-    this.divElement.innerText = this.value;
-  }
 
   get _getLabel() {
     return this.withLabel ? html`<label id="label">${this.label}</label>` : '';
@@ -60,28 +50,31 @@ export class TestinWebForm extends LitElement {
       type="text"
       placeholder="${this.placeholder}"
       id="input"
+      .value="${this.value}"
       onchange="${this.handleChange}"
     />`;
   }
 
   render() {
-    console.log(this.value, 'the value');
     return html`<div class="container ${this.enviroment}">
       ${this._getLabel} ${this._getInput} ${this._getDescription}
       <div id="div"></div>
       <input
         type="text"
         .value="${this.value}"
-        @change="${this.handleChange}"
+        @change="${(e: InputEvent) => this.handleChange(e)}"
       />
       ${this.value}
     </div> `;
   }
 
-  handleChange(event: Event) {
+  handleChange(event: InputEvent) {
+    event.preventDefault();
+    console.log(event, 'qui fue');
     const inputElement = event.target as HTMLInputElement;
     this.value = inputElement.value;
+    this.divElement.innerText = this.value;
+    this.requestUpdate();
     // Do something with the new value
-    console.log(this.value, 'que esto');
   }
 }
